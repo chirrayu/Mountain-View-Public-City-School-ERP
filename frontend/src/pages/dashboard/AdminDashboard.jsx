@@ -15,7 +15,7 @@ function AdminDashboard() {
       <PageHeader
         eyebrow="School Dashboard Overview"
         title="Welcome back, Principal."
-        description="Monitor Mountain View Public School for academic session 2026-27, including admissions, daily attendance, staff, and pending fee receipts."
+        description="Monitor Mountain View City Public School for academic session 2026-27, including admissions, daily attendance, staff, and pending fee receipts."
         actions={
           <>
             <Button variant="secondary">

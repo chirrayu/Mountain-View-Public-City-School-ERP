@@ -27,7 +27,7 @@ function LoginPage() {
   };
 
   return (
-    <AuthShell title="Welcome Back" subtitle="Sign in to Mountain View Public School ERP">
+    <AuthShell title="Welcome Back" subtitle="Sign in to Mountain View City Public School ERP">
       <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
         <label className="block">
           <span className="mb-1 block text-sm font-bold">Work Email</span>

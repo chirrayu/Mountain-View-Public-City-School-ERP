@@ -4,7 +4,7 @@ function Logo({ compact = false }) {
   return (
     <div className="flex items-center gap-3">
       <img
-        alt="Mountain View Public School logo"
+        alt="Mountain View City Public School logo"
         className="h-11 w-11 shrink-0 rounded-lg object-contain"
         src={logoImage}
       />

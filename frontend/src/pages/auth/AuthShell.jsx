@@ -13,7 +13,7 @@ function AuthShell({ children, title, subtitle, split = false }) {
               </div>
               <h1 className="font-display text-4xl font-bold leading-tight">Empowering academic excellence</h1>
               <p className="mt-4 text-lg leading-7 text-white/80">
-                Secure ERP access for administrators, teachers, students, and parents of Mountain View Public School.
+                Secure ERP access for administrators, teachers, students, and parents of Mountain View City Public School.
               </p>
               <div className="mt-10 grid grid-cols-2 gap-4">
                 <div className="rounded-lg border border-white/20 bg-white/10 p-4">
