@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teacher Dashboard | Mountain View ERP</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#b9f474",
+                      "surface-container-low": "#e9f6fd",
+                      "inverse-primary": "#a2c9ff",
+                      "surface-variant": "#d7e4ec",
+                      "surface-bright": "#f4faff",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#004881",
+                      "tertiary-container": "#db322f",
+                      "primary-fixed": "#d3e4ff",
+                      "primary": "#005ea4",
+                      "on-tertiary-fixed-variant": "#93000d",
+                      "inverse-surface": "#263238",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#0077ce",
+                      "surface-tint": "#0060a8",
+                      "surface-container-highest": "#d7e4ec",
+                      "on-error-container": "#93000a",
+                      "secondary": "#3e6a00",
+                      "surface-dim": "#cfdce4",
+                      "surface": "#f4faff",
+                      "on-error": "#ffffff",
+                      "surface-container": "#e3f0f8",
+                      "on-surface-variant": "#404752",
+                      "inverse-on-surface": "#e6f3fb",
+                      "outline-variant": "#c0c7d4",
+                      "on-tertiary": "#ffffff",
+                      "secondary-container": "#b9f474",
+                      "on-background": "#111d23",
+                      "on-secondary-fixed": "#0f2000",
+                      "on-primary-container": "#fdfcff",
+                      "tertiary": "#b7131a",
+                      "outline": "#707783",
+                      "on-surface": "#111d23",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#a2c9ff",
+                      "on-tertiary-container": "#fffbff",
+                      "on-primary-fixed": "#001c38",
+                      "background": "#f4faff",
+                      "secondary-fixed-dim": "#9ed75b",
+                      "tertiary-fixed": "#ffdad6",
+                      "on-tertiary-fixed": "#410002",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#ddeaf2",
+                      "on-secondary-fixed-variant": "#2e4f00",
+                      "tertiary-fixed-dim": "#ffb4ac",
+                      "on-secondary-container": "#437000"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "2xl": "48px",
+                      "sm": "8px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "xs": "4px",
+                      "margin-desktop": "48px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "3xl": "64px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "display": ["Plus Jakarta Sans"],
+                      "label-sm": ["Atkinson Hyperlegible Next"],
+                      "body-lg": ["Atkinson Hyperlegible Next"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Atkinson Hyperlegible Next"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "label-lg": ["Atkinson Hyperlegible Next"],
+                      "headline-sm": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f4faff;
+            color: #111d23;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c0c7d4;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md transition-colors duration-300">
+<!-- Sidebar Navigation -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline flex flex-col p-md gap-sm z-40 hidden md:flex">
+<div class="mb-xl px-sm">
+<h1 class="font-display text-headline-sm font-bold text-primary">MVPS Teacher Portal</h1>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Academic Year 2024-25</p>
+</div>
+<button class="bg-primary text-on-primary rounded-xl py-md px-lg font-label-lg flex items-center justify-center gap-sm mb-lg transition-all hover:opacity-90">
+<span class="material-symbols-outlined">add</span>
+            New Announcement
+        </button>
+<div class="flex-1 space-y-base overflow-y-auto custom-scrollbar">
+<!-- Navigation Items -->
+<a class="bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary font-bold rounded-lg flex items-center gap-md p-md transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-lg">Dashboard</span>
+</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg flex items-center gap-md p-md transition-all" href="#">
+<span class="material-symbols-outlined">how_to_reg</span>
+<span class="font-label-lg">Attendance</span>
+</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg flex items-center gap-md p-md transition-all" href="#">
+<span class="material-symbols-outlined">grade</span>
+<span class="font-label-lg">Grades</span>
+</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg flex items-center gap-md p-md transition-all" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-lg">Schedule</span>
+</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg flex items-center gap-md p-md transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-lg">Students</span>
+</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant dark:hover:bg-surface-container-high rounded-lg flex items-center gap-md p-md transition-all" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-lg">Resources</span>
+</a>
+</div>
+<div class="pt-lg border-t border-outline-variant mt-auto space-y-base">
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg flex items-center gap-md p-md transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-lg">Support</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg flex items-center gap-md p-md transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-lg">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="md:ml-64 flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="sticky top-0 w-full flex items-center justify-between px-margin-desktop h-16 z-30 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none">
+<div class="flex items-center gap-xl flex-1">
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-sm pl-3xl pr-md text-body-md focus:ring-2 focus:ring-primary focus:bg-surface transition-all" placeholder="Search students, classes, or help articles..." type="text"/>
+</div>
+<!-- Brand for Mobile -->
+<div class="md:hidden font-display text-headline-sm font-bold text-primary">MVPS</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors cursor-pointer relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-tertiary rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors cursor-pointer" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Teacher Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a female teacher in her late 30s, smiling warmly. She has dark hair styled neatly and is wearing a modern teal blazer. The background is a soft-focus classroom setting with warm, natural sunlight streaming through the windows, creating a welcoming and optimistic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTYqjCyQUAk1FYufPx7Ei99XJDZ2A-5TC-_NxxrhVTTMjdl1EHVl8bCd9LUFRA3Uul7BxTwdHimhwePYgc-4YYTmRswwmHOJbtW_1yQSulFjb4QNBRtgWCCQkNS7TzqOUZxJmOj-3QEN2L1xvA9Tp1nV4BXuPjmj4qShH_SFuLnXyknuLOV1bQ7xWZJ_SqsMLQray0ie9DsvQd-HF_iNBfedx4veZY3LefG7kKqZhJCcNZTSRNEyEkKOYurUgtbOWjjXRuTYaBbn8"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<main class="p-margin-desktop flex flex-col gap-2xl">
+<!-- Welcome Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-lg">
+<div>
+<h2 class="font-display text-headline-lg text-on-surface">Good Morning, Mrs. Miller</h2>
+<p class="text-body-lg text-on-surface-variant">Here is what's happening in your classes today, September 24th.</p>
+</div>
+<div class="flex gap-md">
+<div class="bg-surface-container rounded-xl px-lg py-sm flex flex-col items-center border border-outline-variant">
+<span class="text-label-sm text-outline uppercase tracking-wider">Attendance Rate</span>
+<span class="text-headline-sm text-primary font-bold">94%</span>
+</div>
+<div class="bg-surface-container rounded-xl px-lg py-sm flex flex-col items-center border border-outline-variant">
+<span class="text-label-sm text-outline uppercase tracking-wider">Avg. Grade</span>
+<span class="text-headline-sm text-secondary font-bold">A2</span>
+</div>
+</div>
+</div>
+<!-- Bento Layout -->
+<div class="bento-grid">
+<!-- Today's Schedule - Col 1-4 -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col h-full">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-display text-headline-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">schedule</span>
+                                Today's Schedule
+                            </h3>
+<button class="text-primary font-label-lg hover:underline transition-all">View Full</button>
+</div>
+<div class="space-y-md">
+<!-- Class Entry 1 -->
+<div class="group relative pl-lg border-l-4 border-primary py-sm bg-surface-container-low/50 rounded-r-lg hover:bg-surface-container-low transition-all">
+<p class="font-label-lg text-primary">09:00 AM - 10:00 AM</p>
+<h4 class="font-headline-sm text-on-surface">Class 10-A - Mathematics</h4>
+<div class="flex items-center gap-sm text-on-surface-variant mt-xs">
+<span class="material-symbols-outlined text-[18px]">meeting_room</span>
+<span class="text-body-md">Room 302</span>
+</div>
+</div>
+<!-- Class Entry 2 -->
+<div class="group relative pl-lg border-l-4 border-secondary py-sm bg-surface-container-low/50 rounded-r-lg hover:bg-surface-container-low transition-all">
+<p class="font-label-lg text-secondary">10:15 AM - 11:15 AM</p>
+<h4 class="font-headline-sm text-on-surface">Class 11-B - Trigonometry</h4>
+<div class="flex items-center gap-sm text-on-surface-variant mt-xs">
+<span class="material-symbols-outlined text-[18px]">meeting_room</span>
+<span class="text-body-md">Room 405</span>
+</div>
+</div>
+<!-- Class Entry 3 (LUNCH) -->
+<div class="group relative pl-lg border-l-4 border-outline-variant py-sm opacity-60">
+<p class="font-label-lg text-outline">11:15 AM - 12:00 PM</p>
+<h4 class="font-headline-sm text-on-surface">Lunch Break</h4>
+</div>
+<!-- Class Entry 4 -->
+<div class="group relative pl-lg border-l-4 border-primary py-sm bg-surface-container-low/50 rounded-r-lg hover:bg-surface-container-low transition-all">
+<p class="font-label-lg text-primary">12:00 PM - 01:00 PM</p>
+<h4 class="font-headline-sm text-on-surface">Class 10-A - Geometry</h4>
+<div class="flex items-center gap-sm text-on-surface-variant mt-xs">
+<span class="material-symbols-outlined text-[18px]">meeting_room</span>
+<span class="text-body-md">Room 302</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- High Priority Column - Col 5-8 -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<!-- Attendance Pending -->
+<div class="bg-tertiary-container/5 border border-tertiary-container/20 rounded-xl p-lg">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-tertiary">warning</span>
+<h3 class="font-display text-headline-sm text-tertiary">Attendance Pending</h3>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-md bg-white/80 dark:bg-inverse-surface/10 rounded-lg border border-outline-variant">
+<div>
+<p class="font-bold text-on-surface">Class 10-A</p>
+<p class="text-label-sm text-on-surface-variant">Daily Attendance (Due 2h ago)</p>
+</div>
+<button class="bg-tertiary text-on-tertiary text-label-lg px-md py-sm rounded-lg hover:bg-on-tertiary-fixed-variant transition-all">Mark Now</button>
+</div>
+</div>
+</div>
+<!-- Assignments Review -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex-1">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-display text-headline-sm">Submissions to Review</h3>
+<span class="bg-primary text-on-primary text-label-sm px-sm py-xs rounded-full">24 Total</span>
+</div>
+<div class="space-y-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">quiz</span>
+</div>
+<div class="flex-1">
+<p class="font-label-lg text-on-surface">Math Quiz - Weekly Test</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-xs">
+<div class="bg-primary h-1.5 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<p class="text-label-lg font-bold text-primary">12 pending</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">description</span>
+</div>
+<div class="flex-1">
+<p class="font-label-lg text-on-surface">Notebook Submission - 10-A</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-xs">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 40%"></div>
+</div>
+</div>
+<p class="text-label-lg font-bold text-secondary">8 pending</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">history_edu</span>
+</div>
+<div class="flex-1">
+<p class="font-label-lg text-on-surface">Re-test Request - Physics</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-xs">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<p class="text-label-lg font-bold text-tertiary">4 pending</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Student Alerts - Col 9-12 -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col h-full">
+<h3 class="font-display text-headline-sm mb-lg">Student Alerts</h3>
+<div class="space-y-lg overflow-y-auto custom-scrollbar flex-1">
+<!-- Alert 1: Attendance -->
+<div class="p-md rounded-xl bg-surface-container-low border border-outline-variant">
+<div class="flex items-center gap-md mb-sm">
+<img alt="Student Ananya" class="w-10 h-10 rounded-full border border-outline-variant" data-alt="A portrait of a teenage girl student with glasses and brown curly hair, looking slightly concerned. She is wearing a mustard yellow sweater and sitting in a library. The background is filled with bookshelves and the lighting is soft and academic, evoking a sense of studious concentration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs3lyBXfLKtqexEUJkEml0-QmJw_5ohTl85Um1ECa82MlcJNoHLITGBGS4dSIYnuwVxn0cBhGUxjE1_Elq3ye1w3R3CP76x-aQhKL03mysFGJ58PEAyzddU2C3RIdDLcmaKtkz5YXhD4pODL_vMAPk4mFqOjCYwcFjPqrxgvyZnaaeIoQrrda07N0pPFzhv2oIiqValn2uJEKpMdDS_XUAWoLA1XfZiQFo46JbxbG5Sd4SaBncXQTWGr6AhQFl_3ZgYoL13urtr-w"/>
+<div>
+<h4 class="font-label-lg text-on-surface">Ananya Iyer</h4>
+<div class="flex items-center gap-xs">
+<span class="text-label-sm text-on-surface-variant font-medium">Roll No: 12</span>
+<span class="bg-tertiary-container/20 text-tertiary text-[10px] font-bold px-sm py-[2px] rounded uppercase tracking-tighter">Attendance Risk</span>
+</div>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant">Attendance dropped to 75% this month. Missed 3 Mathematics classes in a row.</p>
+<button class="mt-md text-primary font-label-lg flex items-center gap-xs">
+                                    Contact Parent <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<!-- Alert 2: Performance -->
+<div class="p-md rounded-xl bg-surface-container-low border border-outline-variant">
+<div class="flex items-center gap-md mb-sm">
+<img alt="Student Marcus" class="w-10 h-10 rounded-full border border-outline-variant" data-alt="A headshot of a teenage boy with short black hair and a friendly but focused expression. He is wearing a grey school uniform polo shirt. The background is a brightly lit, modern school hallway with colorful lockers and clean architectural lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCfoD9AIAtQuumeg0PAQbDxnFG31hWbHDXAQA6CmXir2BpmWz99BG08LCVk84JoMsKKTm9TMIO4ajNl3vnClDuQ7_-RXgHsZhsVXZpxtpfqgcyKeYQiqR0CtWyV0T6TcWoEjDw6iCz60thpJVan2CKsgqyGYmWF3m-g-wuZmzAvKlhKpsepQXBYIRnK-vBaa_7k6D2-PZVPZ23NTasiUXfcGfwcWxy8iNfWAJZdGAvbxY-7qAXVkRNhkqfUmCZoggJUdWEIX1ClJc"/>
+<div>
+<h4 class="font-label-lg text-on-surface">Marcus Thorne</h4>
+<div class="flex items-center gap-xs">
+<span class="text-label-sm text-on-surface-variant font-medium">Roll No: 28</span>
+<span class="bg-secondary-container/20 text-secondary text-[10px] font-bold px-sm py-[2px] rounded uppercase tracking-tighter">Notice: Marks Drop</span>
+</div>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant">Scored 32/100 in Physics Mid-term. Personal average previously above 80%.</p>
+<button class="mt-md text-primary font-label-lg flex items-center gap-xs">
+                                    Schedule Review <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Weekly Class Load Chart - Col 1-8 -->
+<section class="col-span-12 lg:col-span-8">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg h-[350px] flex flex-col">
+<div class="flex items-center justify-between mb-xl">
+<div>
+<h3 class="font-display text-headline-sm">Weekly Teaching Load</h3>
+<p class="text-label-sm text-on-surface-variant">Number of periods per day</p>
+</div>
+<div class="flex gap-md">
+<span class="flex items-center gap-xs text-label-sm"><span class="w-3 h-3 rounded-full bg-primary"></span> Regular Classes</span>
+<span class="flex items-center gap-xs text-label-sm"><span class="w-3 h-3 rounded-full bg-secondary-fixed"></span> Practical/Labs</span>
+</div>
+</div>
+<!-- Visualizing chart using CSS Bar chart -->
+<div class="flex-1 flex items-end justify-between px-lg pb-md gap-lg">
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full flex flex-col-reverse gap-[2px]">
+<div class="bg-primary rounded-t-sm w-full h-32"></div>
+<div class="bg-secondary-fixed rounded-sm w-full h-8"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface-variant">Mon</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full flex flex-col-reverse gap-[2px]">
+<div class="bg-primary rounded-t-sm w-full h-24"></div>
+<div class="bg-secondary-fixed rounded-sm w-full h-12"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface-variant">Tue</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full flex flex-col-reverse gap-[2px]">
+<div class="bg-primary rounded-t-sm w-full h-40"></div>
+<div class="bg-secondary-fixed rounded-sm w-full h-6"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface-variant">Wed</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full flex flex-col-reverse gap-[2px]">
+<div class="bg-primary rounded-t-sm w-full h-28"></div>
+<div class="bg-secondary-fixed rounded-sm w-full h-16"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface-variant">Thu</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full flex flex-col-reverse gap-[2px]">
+<div class="bg-primary rounded-t-sm w-full h-16"></div>
+<div class="bg-secondary-fixed rounded-sm w-full h-4"></div>
+</div>
+<span class="text-label-sm font-bold text-on-surface-variant">Fri</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Announcements - Col 9-12 -->
+<section class="col-span-12 lg:col-span-4">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg h-[350px] flex flex-col">
+<h3 class="font-display text-headline-sm mb-lg">Recent Announcements</h3>
+<div class="space-y-md overflow-y-auto flex-1 custom-scrollbar">
+<div class="p-md bg-primary-container/5 rounded-lg border-l-4 border-primary">
+<p class="text-label-sm text-primary font-bold uppercase">Academic Council</p>
+<p class="font-bold text-on-surface mt-xs">Syllabus Completion Review</p>
+<p class="text-body-md text-on-surface-variant line-clamp-2 mt-xs">Finalizing term-1 standards for Class 10-12. Please update tracker docs...</p>
+</div>
+<div class="p-md bg-secondary-container/5 rounded-lg border-l-4 border-secondary">
+<p class="text-label-sm text-secondary font-bold uppercase">Staff Notice</p>
+<p class="font-bold text-on-surface mt-xs">Inter-School Sports Meet</p>
+<p class="text-body-md text-on-surface-variant line-clamp-2 mt-xs">Duty roster for the upcoming athletics meet is posted on the main board.</p>
+</div>
+<div class="p-md bg-surface-container rounded-lg border-l-4 border-outline">
+<p class="text-label-sm text-outline font-bold uppercase">Admin Office</p>
+<p class="font-bold text-on-surface mt-xs">Biometric Update</p>
+<p class="text-body-md text-on-surface-variant line-clamp-2 mt-xs">All staff must verify fingerprints at the reception by Friday evening.</p>
+</div>
+</div>
+<button class="mt-lg w-full text-center py-sm font-label-lg text-primary hover:bg-surface-container-low rounded-lg transition-all">View All Announcements</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto px-margin-desktop py-lg border-t border-outline-variant text-on-surface-variant text-label-sm flex justify-between items-center">
+<p>© 2024 Mountain View City Public School. All Rights Reserved.</p>
+<div class="flex gap-lg">
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">System Status</a>
+</div>
+</footer>
+</div>
+<!-- Mobile FAB -->
+<button class="md:hidden fixed bottom-md right-md w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+<script>
+        // Micro-interactions and state handling
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dark mode toggle handled by setting cog
+            // Hover effect for bars
+            const bars = document.querySelectorAll('.bg-primary, .bg-secondary-fixed');
+            bars.forEach(bar => {
+                bar.addEventListener('mouseenter', () => {
+                    bar.classList.add('opacity-80');
+                });
+                bar.addEventListener('mouseleave', () => {
+                    bar.classList.remove('opacity-80');
+                });
+            });
+
+            // Smooth content reveal
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(10px)';
+                section.style.transition = `all 0.5s ease-out ${index * 0.1}s`;
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

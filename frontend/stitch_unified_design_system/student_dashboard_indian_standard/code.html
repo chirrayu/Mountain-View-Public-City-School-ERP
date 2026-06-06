@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Dashboard | Mountain View School Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(0, 94, 164, 0.1) 0%, rgba(0, 94, 164, 0) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#b7131a",
+                        "primary-container": "#0077ce",
+                        "on-surface": "#111d23",
+                        "outline-variant": "#c0c7d4",
+                        "inverse-surface": "#263238",
+                        "surface-container": "#e3f0f8",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary-fixed": "#ffdad6",
+                        "surface-dim": "#cfdce4",
+                        "on-secondary-fixed": "#0f2000",
+                        "outline": "#707783",
+                        "on-primary-container": "#fdfcff",
+                        "on-primary-fixed": "#001c38",
+                        "surface-container-low": "#e9f6fd",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "on-tertiary-fixed-variant": "#93000d",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#d3e4ff",
+                        "surface-container-high": "#ddeaf2",
+                        "primary": "#005ea4",
+                        "on-secondary-fixed-variant": "#2e4f00",
+                        "on-tertiary-fixed": "#410002",
+                        "tertiary-container": "#db322f",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#b9f474",
+                        "on-primary-fixed-variant": "#004881",
+                        "inverse-on-surface": "#e6f3fb",
+                        "surface": "#f4faff",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#437000",
+                        "on-background": "#111d23",
+                        "secondary-fixed-dim": "#9ed75b",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#0060a8",
+                        "surface-variant": "#d7e4ec",
+                        "background": "#f4faff",
+                        "secondary-fixed": "#b9f474",
+                        "surface-container-highest": "#d7e4ec",
+                        "inverse-primary": "#a2c9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#3e6a00",
+                        "on-surface-variant": "#404752",
+                        "tertiary-fixed-dim": "#ffb4ac",
+                        "surface-bright": "#f4faff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "base": "4px",
+                        "2xl": "48px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "margin-desktop": "48px",
+                        "3xl": "64px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Atkinson Hyperlegible Next"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Atkinson Hyperlegible Next"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "label-sm": ["Atkinson Hyperlegible Next"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-lg": ["Atkinson Hyperlegible Next"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-lg w-full sticky top-0 z-50 bg-surface dark:bg-on-surface border-b border-outline-variant dark:border-outline h-16">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim">Mountain View Student Portal</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-md mx-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-label-lg focus:ring-2 focus:ring-primary" placeholder="Search courses, homework, help..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden sm:flex flex-col items-end mr-2">
+<span class="text-label-lg font-bold text-on-surface">Class 10-B</span>
+<span class="text-[10px] text-on-surface-variant">Roll No: 12</span>
+</div>
+<button class="p-2 hover:bg-surface-container-low transition-colors rounded-full text-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Student Profile Picture" class="w-full h-full object-cover" data-alt="A professional, friendly headshot of a high school student with a confident smile, wearing a modern school sweater. The background is a softly blurred modern school library with warm lighting, creating an atmosphere of academic focus and institutional trust in a high-key light mode style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVtX1b1mtaueVTjexU8U9YAri72CarIKrSo0IFG6gTfiNmV1SBChDHW2xUR-IYcCnMIc-2HzPr94poTKKz6c_skzVgGu8UoQ9aA0vuM6oTP8Hmwb0UwOllfmhz8WhlLXimd2Z8bwVzxbrhYl-giNR64yOPVOouqB8VZ7OMQKIEbHCLASGxEVnZMh2EGjzJ8RxGivlV1QWOfmQB6EL05S_lOsmyitygM1j2iyouNu-MlHaJ6bQ06KXBJlEAVFCI910TjUmZ8b8d_uk"/>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col py-lg gap-base bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant dark:border-outline h-screen w-64 fixed left-0 top-16">
+<div class="px-md mb-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h2 class="font-label-lg text-on-surface font-bold leading-none">Mountain View City</h2>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Public Schools</p>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-md py-3 px-4 bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-lg mx-2 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-lg">Dashboard</span>
+</a>
+<a class="flex items-center gap-md py-3 px-4 text-on-surface-variant dark:text-surface-variant mx-2 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-lg">Courses</span>
+</a>
+<a class="flex items-center gap-md py-3 px-4 text-on-surface-variant dark:text-surface-variant mx-2 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-lg">Homework/Projects</span>
+</a>
+<a class="flex items-center gap-md py-3 px-4 text-on-surface-variant dark:text-surface-variant mx-2 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-lg">Exams</span>
+</a>
+<a class="flex items-center gap-md py-3 px-4 text-on-surface-variant dark:text-surface-variant mx-2 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">grade</span>
+<span class="font-label-lg">Report Card</span>
+</a>
+<a class="flex items-center gap-md py-3 px-4 text-on-surface-variant dark:text-surface-variant mx-2 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-lg">Time Table</span>
+</a>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-md">
+<a class="flex items-center gap-md py-3 px-4 text-on-surface-variant dark:text-surface-variant mx-2 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg">Settings</span>
+</a>
+<a class="flex items-center gap-md py-3 px-4 text-on-surface-variant dark:text-surface-variant mx-2 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-lg">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-md md:p-2xl bg-surface">
+<!-- Header Section -->
+<section class="mb-xl">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-base">Good Morning, Alex</h1>
+<p class="text-on-surface-variant font-body-lg">"The future belongs to those who believe in the beauty of their dreams." - Keep up the great momentum!</p>
+</section>
+<!-- Stat Cards (Top Row) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<!-- Attendance Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start mb-md">
+<div class="p-2 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">event_available</span>
+</div>
+<span class="text-secondary font-label-lg flex items-center gap-1">
+                            Regular <span class="material-symbols-outlined text-sm">trending_flat</span>
+</span>
+</div>
+<div>
+<h3 class="text-on-surface-variant font-label-lg mb-1">Attendance Rate</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-display font-display text-on-surface leading-tight">94%</span>
+</div>
+</div>
+<div class="mt-4 h-12 w-full flex items-end gap-1">
+<div class="w-full bg-primary-container/20 h-8 rounded-t-sm" style="height: 60%"></div>
+<div class="w-full bg-primary-container/20 h-8 rounded-t-sm" style="height: 80%"></div>
+<div class="w-full bg-primary-container/20 h-8 rounded-t-sm" style="height: 70%"></div>
+<div class="w-full bg-primary-container h-8 rounded-t-sm" style="height: 94%"></div>
+<div class="w-full bg-primary-container/20 h-8 rounded-t-sm" style="height: 85%"></div>
+<div class="w-full bg-primary-container/20 h-8 rounded-t-sm" style="height: 90%"></div>
+</div>
+</div>
+<!-- Overall Grade Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start mb-md">
+<div class="p-2 bg-secondary-container/20 rounded-lg text-on-secondary-container">
+<span class="material-symbols-outlined">military_tech</span>
+</div>
+<span class="text-primary font-label-lg flex items-center gap-1">
+                            +2% <span class="material-symbols-outlined text-sm">trending_up</span>
+</span>
+</div>
+<div>
+<h3 class="text-on-surface-variant font-label-lg mb-1">Overall Grade</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-display font-display text-on-surface leading-tight">A1</span>
+<span class="text-headline-sm text-on-surface-variant font-medium">(88.4%)</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<div class="flex-1 bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-secondary w-[88%] h-full"></div>
+</div>
+<span class="text-label-sm text-on-surface-variant">Distinction</span>
+</div>
+</div>
+<!-- Next Goal Card -->
+<div class="bg-primary border border-primary p-lg rounded-xl text-on-primary relative overflow-hidden">
+<div class="relative z-10 h-full flex flex-col">
+<h3 class="font-label-lg opacity-80 mb-base">Next Big Milestone</h3>
+<p class="font-headline-md text-headline-md leading-tight mb-md">Term 1 Finals</p>
+<div class="mt-auto flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-label-lg">In 14 Days</span>
+</div>
+</div>
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+</div>
+</section>
+<!-- Main Content (Two Columns) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column (Priority) -->
+<div class="lg:col-span-7 space-y-xl">
+<!-- Homework/Projects -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Homework &amp; Projects</h2>
+<a class="text-primary font-label-lg hover:underline" href="#">View All</a>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Item -->
+<div class="p-lg hover:bg-surface-container transition-colors group">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-base">
+<span class="px-3 py-1 bg-primary-container/10 text-primary text-label-sm rounded-full font-bold">MATHS</span>
+<span class="text-on-surface font-label-lg">Calculus: Integrals Notebook Submission</span>
+</div>
+<span class="text-tertiary font-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">error</span>
+                                        Due Tomorrow
+                                    </span>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-on-surface-variant text-body-md">Practice set for definitive integrals and area under curves.</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary px-4 py-1 rounded-lg text-label-lg">Submit</button>
+</div>
+</div>
+<!-- Item -->
+<div class="p-lg hover:bg-surface-container transition-colors group">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-base">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-label-sm rounded-full font-bold">SCIENCE</span>
+<span class="text-on-surface font-label-lg">Physics: Wave Motion Lab Record</span>
+</div>
+<span class="text-on-surface-variant font-label-sm">Due in 3 Days</span>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-on-surface-variant text-body-md">Final documentation for the interference experiment.</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary px-4 py-1 rounded-lg text-label-lg">Submit</button>
+</div>
+</div>
+<!-- Item -->
+<div class="p-lg hover:bg-surface-container transition-colors group">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-base">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant text-label-sm rounded-full font-bold">HISTORY</span>
+<span class="text-on-surface font-label-lg">Cold War: Impact on Indian Economy</span>
+</div>
+<span class="text-on-surface-variant font-label-sm">Due next week</span>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-on-surface-variant text-body-md">500-word project report on geopolitical impacts.</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary px-4 py-1 rounded-lg text-label-lg">Submit</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Exams Focused Card -->
+<div class="bg-tertiary-container border-none p-xl rounded-xl text-on-tertiary-container flex items-center justify-between shadow-lg">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-label-lg uppercase tracking-widest">Pre-Board Examination Alert</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg mb-2">Advanced Literature Finals</h2>
+<p class="font-body-lg opacity-90">Wednesday, Oct 25th · Examination Hall A</p>
+<div class="mt-lg flex gap-md">
+<button class="bg-white text-tertiary-container font-label-lg px-6 py-2 rounded-lg hover:bg-on-tertiary-container transition-colors">Study Material</button>
+<button class="bg-white/20 border border-white/30 text-white font-label-lg px-6 py-2 rounded-lg hover:bg-white/30 transition-colors">Add to Calendar</button>
+</div>
+</div>
+<div class="hidden md:block">
+<span class="material-symbols-outlined text-[80px] opacity-20">pending_actions</span>
+</div>
+</div>
+</div>
+<!-- Right Column -->
+<div class="lg:col-span-5 space-y-xl">
+<!-- Academic Performance Chart -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mark Trend (%)</h3>
+<select class="bg-transparent border-none text-label-lg text-primary focus:ring-0 cursor-pointer">
+<option>This Term</option>
+<option>Academic Year</option>
+</select>
+</div>
+<div class="h-48 flex items-end justify-between px-md relative">
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none">
+<path d="M0,150 L50,130 L100,140 L150,90 L200,70 L250,50 L300,60 L350,40" fill="none" stroke="#005ea4" stroke-linecap="round" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+<path d="M0,150 L50,130 L100,140 L150,90 L200,70 L250,50 L300,60 L350,40 L350,200 L0,200 Z" fill="url(#grad1)" opacity="0.1"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgb(0,94,164);stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgb(0,94,164);stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute bottom-[-24px] w-full flex justify-between text-[10px] text-on-surface-variant px-md">
+<span>AUG</span><span>SEP</span><span>OCT</span><span>NOV</span><span>DEC</span>
+</div>
+</div>
+</div>
+<!-- Recent Results -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-lg border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Unit Test Results</h3>
+</div>
+<div class="p-0 overflow-x-auto">
+<table class="w-full text-left min-w-[400px]">
+<thead class="bg-surface-container-low text-[10px] text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="px-lg py-3">Subject</th>
+<th class="px-lg py-3 text-center">Max</th>
+<th class="px-lg py-3 text-center">Obtained</th>
+<th class="px-lg py-3 text-right">Grade</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-lg py-4 font-label-lg">Mathematics</td>
+<td class="px-lg py-4 text-center text-on-surface-variant">100</td>
+<td class="px-lg py-4 text-center font-bold">92</td>
+<td class="px-lg py-4 text-right"><span class="bg-secondary/10 text-secondary px-2 py-1 rounded font-bold">A1</span></td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-lg py-4 font-label-lg">Chemistry</td>
+<td class="px-lg py-4 text-center text-on-surface-variant">100</td>
+<td class="px-lg py-4 text-center font-bold">88</td>
+<td class="px-lg py-4 text-right"><span class="bg-secondary/10 text-secondary px-2 py-1 rounded font-bold">A2</span></td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-lg py-4 font-label-lg">English</td>
+<td class="px-lg py-4 text-center text-on-surface-variant">100</td>
+<td class="px-lg py-4 text-center font-bold">94</td>
+<td class="px-lg py-4 text-right"><span class="bg-secondary/10 text-secondary px-2 py-1 rounded font-bold">A1</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- School Announcements -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">School Notice Board</h3>
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="p-lg space-y-md">
+<div class="flex gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">campaign</span>
+</div>
+<div>
+<h4 class="font-label-lg text-on-surface">Annual Sports Day Registration</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-2">Register before Friday for track and field events. Team jerseys will be provided...</p>
+<span class="text-[10px] text-on-surface-variant">2 hours ago</span>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+<div>
+<h4 class="font-label-lg text-on-surface">Library Timings Revision</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-2">The library will be open until 6 PM for board examinees starting Monday...</p>
+<span class="text-[10px] text-on-surface-variant">Yesterday</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant flex justify-around py-3 z-50">
+<a class="flex flex-col items-center text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-bold">Dash</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px]">Courses</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-[10px]">Work</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px]">Table</span>
+</a>
+</nav>
+<script>
+        const themeToggle = document.createElement('button');
+        themeToggle.className = 'fixed bottom-24 right-6 bg-on-surface text-surface p-4 rounded-full shadow-2xl z-50 hidden md:flex items-center gap-2';
+        themeToggle.innerHTML = '<span class="material-symbols-outlined">dark_mode</span>';
+        document.body.appendChild(themeToggle);
+
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            themeToggle.innerHTML = isDark ? '<span class="material-symbols-outlined">light_mode</span>' : '<span class="material-symbols-outlined">dark_mode</span>';
+        });
+    </script>
+</body></html>
